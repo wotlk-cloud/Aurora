@@ -1,4 +1,4 @@
-﻿local F, C = unpack(Aurora);
+local F, C = unpack(Aurora);
 
 local Old = {};
 local CheckBoxes = {};
@@ -118,20 +118,20 @@ Config.Alpha = CreateFrame('Slider', 'AuroraConfigAlpha', Config.ScrollChild, 'O
 Config.Alpha:SetPoint('TOP', 0, -15);
 Config.Alpha:SetMinMaxValues(0, 1);
 Config.Alpha:SetValueStep(0.01);
-AuroraConfigAlphaText:SetText('Прозрачность');
+AuroraConfigAlphaText:SetText('Transparency');
 
 Config.Alpha:SetScript('OnValueChanged', function(_, value)
 	AuroraConfig.alpha = value
 	value = value * 100;
 	value = math.floor(value + .05);
-	AuroraConfigAlphaText:SetText('Прозрачность: '..string.format('%d', value));
+	AuroraConfigAlphaText:SetText('Transparency: '..string.format('%d', value));
 	UpdateFrames()
 end)
 
-Config.Font = CreateToggleBox(Config.ScrollChild, 'Font', 'Заменить шрифты игры по умолчанию');
+Config.Font = CreateToggleBox(Config.ScrollChild, 'Font', 'Replace default game fonts');
 Config.Font:SetPoint('TOPLEFT', 16, -76);
 
-Config.Colour = CreateToggleBox(Config.ScrollChild, 'useCustomColour', 'Изменить цвет');
+Config.Colour = CreateToggleBox(Config.ScrollChild, 'useCustomColour', 'Change color');
 Config.Colour:SetPoint('TOPLEFT', Config.Font, 'BOTTOMLEFT', 0, -8);
 Config.Colour:SetScript('OnClick', function(self)
 	if self:GetChecked() then
@@ -146,7 +146,7 @@ end)
 Config.ColourButton = CreateFrame('Button', 'AuroraConfigColourButton', Config.ScrollChild, 'UIPanelButtonTemplate');
 Config.ColourButton:SetPoint('LEFT', Config.Colour, 'RIGHT', 128, 0);
 Config.ColourButton:SetSize(128, 25);
-Config.ColourButton:SetText('Изменить...');
+Config.ColourButton:SetText('Change...');
 Config.ColourButton:SetScript('OnClick', function()
 	local r, g, b = AuroraConfig.customColour.r, AuroraConfig.customColour.g, AuroraConfig.customColour.b;
 	ColorPickerFrame:SetColorRGB(r, g, b);
@@ -160,30 +160,30 @@ end)
 Config.Gradient = CreateToggleBox(Config.ScrollChild, 'useButtonGradientColour', 'Gradient button style');
 Config.Gradient:SetPoint('TOPLEFT', Config.Colour, 'BOTTOMLEFT', 0, -8);
 
-Config.Bags = CreateToggleBox(Config.ScrollChild, 'Bags', 'Сумки');
+Config.Bags = CreateToggleBox(Config.ScrollChild, 'Bags', 'Bags');
 Config.Bags:SetPoint('TOPLEFT', Config.Gradient, 'BOTTOMLEFT', 0, -8);
 
-Config.Tooltips = CreateToggleBox(Config.ScrollChild, 'Tooltips', 'Подсказки');
+Config.Tooltips = CreateToggleBox(Config.ScrollChild, 'Tooltips', 'Hints');
 Config.Tooltips:SetPoint('LEFT', Config.Bags, 'RIGHT', 100, 0);
 
-Config.ChatBubbles = CreateToggleBox(Config.ScrollChild, 'ChatBubbles', 'Сообщения в облачках');
+Config.ChatBubbles = CreateToggleBox(Config.ScrollChild, 'ChatBubbles', 'Messages in bubbles');
 Config.ChatBubbles:SetPoint('LEFT', Config.Tooltips, 'RIGHT', 100, 0);
 
-Config.Maps = CreateToggleBox(Config.ScrollChild, 'Maps', 'Карта мира');
+Config.Maps = CreateToggleBox(Config.ScrollChild, 'Maps', 'World map');
 Config.Maps:SetPoint('TOPLEFT', Config.Bags, 'BOTTOMLEFT', 0, -8);
 
-Config.Loot = CreateToggleBox(Config.ScrollChild, 'Loot', 'Добыча');
+Config.Loot = CreateToggleBox(Config.ScrollChild, 'Loot', 'Loot');
 Config.Loot:SetPoint('LEFT', Config.Maps, 'RIGHT', 100, 0);
 
 Config.ReloadText = Config:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
 Config.ReloadText:SetPoint('BOTTOM', 0, 33)
-Config.ReloadText:SetText([=[Требуется перезагрузить пользовательский 
-интерфейс для применения настроек!]=])
+Config.ReloadText:SetText([=[Requires user reload
+interface for applying settings!]=])
 
 Config.Reload = CreateFrame('Button', nil, Config, 'UIPanelButtonTemplate')
 Config.Reload:SetSize(128, 25);
 Config.Reload:SetPoint('BOTTOM', 0, 4);
-Config.Reload:SetText('Перезагрузить!');
+Config.Reload:SetText('Reload!');
 Config.Reload:SetScript('OnClick', ReloadUI);
 
 Config.Refresh = function()
